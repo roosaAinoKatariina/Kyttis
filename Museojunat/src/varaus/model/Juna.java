@@ -1,13 +1,6 @@
 package varaus.model;
 
-import java.time.LocalDate;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  * Model class for a train.
@@ -44,9 +37,13 @@ public class Juna {
         return nimi;
     }
 
-    public void setFirstName(String nimi) {
+    public void setNimi(String nimi) {
         this.nimi = nimi;
     }
+
+	public String getTyyppi() {
+		return tyyppi;
+	}
 	
 	
 }
