@@ -8,29 +8,37 @@ package varaus.model;
  */
 public class Juna {
 
-	private final String nimi;
-    private final String tyyppi;  // Voisi luoda class Tyyppi, joka ois höyry- tai diesel
-    private final boolean[] paikat;
+	private String nimi;
+    private String tyyppi;  // Voisi luoda class Tyyppi, joka ois höyry- tai diesel
+    private boolean[] paikat; // tai boolean-taulukoista koostuva array -- vaunut
+                                    // asetettais jokaiseen junaan tasan kolme vaunua?
 
     /**
      * Default constructor.
      */
     public Juna() {
         this(null, null);
+        this.paikat = new boolean[60];
+        for(int i=0 ; i<60; i++) {
+        	paikat[i]=false;
+        }
     }
 
     /**
      * Constructor with some initial data.
      * 
      * @param nimi
-     * @param tyyppi
+     * @param tyyppi joko h (niinkuin höyryjuna) tai d (niinkuin diisseli)
      */
     public Juna(String nimi, String tyyppi) {
         this.nimi = nimi;
-        this.tyyppi = tyyppi;
+        setTyyppi(tyyppi);
 
-        // Some initial dummy data, just for convenient testing.
+        // Alustetaan tyhjät vaunupaikat 
         this.paikat = new boolean[60];
+        for(int i=0 ; i<60; i++) {
+        	paikat[i]=false;
+        }
     }
 
     public String getnimi() {
@@ -45,5 +53,22 @@ public class Juna {
 		return tyyppi;
 	}
 	
+	public boolean setTyyppi(String tyyppi) {
+		if( tyyppi=="h" || tyyppi=="d" ) {
+			this.tyyppi=tyyppi;
+		return true;
+		}
+		else {return false;}
+	}
+	
+	public boolean varaaPaikka(int paikka) {  //attribuutiksi vaunun numero..
+		if(paikat[paikka]) { // eli jos true, niin on varattu!
+			return false;
+		}
+		else {               // muutoin siis varataan paikka
+			paikat[paikka]=true;
+			return true;
+		}
+	}
 	
 }
